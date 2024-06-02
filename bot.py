@@ -1,7 +1,7 @@
 import discord
 import os
 import asyncio
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Mengatur intents yang diperlukan
 intents = discord.Intents.default()
@@ -14,15 +14,14 @@ start_time = datetime.now()
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
-    game = discord.Game(f"Playing a game {datetime.now().strftime('%H:%M:%S')}")
-    await client.change_presence(status=discord.Status.online, activity=game)
-
-    while True:
+    while (datetime.now() - start_time) < timedelta(hours=6):
         elapsed_time = datetime.now() - start_time
         elapsed_str = str(elapsed_time).split('.')[0]  # Format: HH:MM:SS
-        game = discord.Game(f"{elapsed_str}")
+        game = discord.Game(f"Playing a game | {elapsed_str}")
         await client.change_presence(status=discord.Status.online, activity=game)
-        await asyncio.sleep(1)  # Update every 10 seconds
+        await asyncio.sleep(1)  # Update every second
+    await client.close()
+    print("Bot has stopped after 6 hours")
 
 @client.event
 async def on_message(message):
