@@ -1,6 +1,9 @@
 name: Run Discord Bot
 
-on: [push]
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Runs every 6 hours
+  workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
   run-bot:
@@ -24,4 +27,4 @@ jobs:
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
         run: |
-          python bot.py
+          timeout 6h python bot.py  # Ensures the bot runs for 6 hours
