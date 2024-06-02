@@ -20,7 +20,7 @@ async def on_ready():
     while True:
         elapsed_time = datetime.now() - start_time
         elapsed_str = str(elapsed_time).split('.')[0]  # Format: HH:MM:SS
-        game = discord.Game(f"Playing a game | {elapsed_str}")
+        game = discord.Game(f"{elapsed_str}")
         await client.change_presence(status=discord.Status.online, activity=game)
         await asyncio.sleep(1)  # Update every 10 seconds
 
