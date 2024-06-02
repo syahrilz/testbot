@@ -14,7 +14,7 @@ start_time = datetime.now()
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
-    game = discord.Game(f"Playing a game | {datetime.now().strftime('%H:%M:%S')}")
+    game = discord.Game(f"Playing a game {datetime.now().strftime('%H:%M:%S')}")
     await client.change_presence(status=discord.Status.online, activity=game)
 
     while True:
