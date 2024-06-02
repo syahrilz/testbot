@@ -1,7 +1,11 @@
 import discord
 import os
 
-client = discord.Client()
+# Mengatur intents yang diperlukan
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
