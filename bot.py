@@ -22,7 +22,7 @@ async def on_ready():
         elapsed_str = str(elapsed_time).split('.')[0]  # Format: HH:MM:SS
         game = discord.Game(f"Playing a game | {elapsed_str}")
         await client.change_presence(status=discord.Status.online, activity=game)
-        await asyncio.sleep(10)  # Update every 10 seconds
+        await asyncio.sleep(1)  # Update every 10 seconds
 
 @client.event
 async def on_message(message):
